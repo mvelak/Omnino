@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const Dashboard = () => {
+export default function Dashboard () {
 
     const [age, setAge] = useState(400);
     function updateAge() {
@@ -22,9 +22,6 @@ const Dashboard = () => {
         </Section>
     )
 }
-
-
-export default Dashboard;
 
 
 // Styled Components

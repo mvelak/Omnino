@@ -3,54 +3,65 @@ import styled from "styled-components";
 
 const Footer = () => {
     return (
-        <FooterSection>
+        <Container>
             <FooterContainer>
-                <LeftContainer>
-                    © {new Date().getFullYear()} Omnino
-                </LeftContainer>
-                <CenterContainer>
-                    <Link href="#">Privacy Policy</Link> | <Link href="#">Terms of Service</Link>
-                </CenterContainer>
-                <RightContainer>
-                    <SocialIcon href="#" aria-label="Facebook">FB</SocialIcon>
-                    <SocialIcon href="#" aria-label="Twitter">TW</SocialIcon>
-                    <SocialIcon href="#" aria-label="Instagram">IG</SocialIcon>
-                </RightContainer>
+                <Column>
+                    <img src={"/white-logo-1200.png"} alt="ok"/>
+                    © 2025 Omnino
+                </Column>
+                <Column>
+                    <ColumnHeader>Company</ColumnHeader>
+                    <Link href="#">About</Link>
+                </Column>
+                <Column>
+                    <ColumnHeader>Platforms</ColumnHeader>
+                    <Link href="#">Bluesky</Link>
+                    <Link href="#">Mastodon</Link>
+                </Column>
+                <Column>
+                    <ColumnHeader>Legal</ColumnHeader>
+                    <Link href="#">Privacy Policy</Link>
+                    <Link href="#">Terms of Service</Link>
+                </Column>
+                <Column>
+                    <ColumnHeader>Social Media</ColumnHeader>
+                    <Link href="#">Facebook</Link>
+                    <Link href="#">Twitter</Link>
+                    <Link href="#">Instagram</Link>
+                </Column>
             </FooterContainer>
-        </FooterSection>
+        </Container>
     );
 };
 
-const FooterSection = styled.footer`
-
-    `
+const Container = styled.footer`
+    background: linear-gradient(180deg, rgba(47,47,50,1) 0%, rgba(0,0,0,1) 11%);
+    color: white;
+`
 
 const FooterContainer = styled.div`
-    
-    `
+    display: grid;
+    grid-template-columns: repeat(5, minmax(185px, 1fr));
+`;
 
-const LeftContainer = styled.div`
-        
-    `
+const Column = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+`;
 
-const CenterContainer = styled.div`
-        
-    `
-
-const RightContainer = styled.div`
-    
-    `
+const ColumnHeader = styled.h2`
+    margin-top: 0;
+    margin-bottom: 10;
+`;
 
 const Link = styled.a`
-    
-    `
-
-const SocialIcon = styled.a`
-    color: #fff;
+    color: white;
     text-decoration: none;
-    font-size: 1.5rem;
-    &:hover {
-    color: #007bff;
-    }`
+    &:hover {color: slategray;}
+`;
 
 export default Footer;
