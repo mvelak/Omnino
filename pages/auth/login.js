@@ -1,14 +1,22 @@
 import React from "react"
 import styled from "styled-components";
+import Form from "next/form";
 
 const Login = () => {
     return (
         <Container>
-            <PromptBox>
+            <LoginContainer>
                 <Header>Log In</Header>
-                <Button href="/auth/signup">Sign Up</Button>
+                <p>Email</p>
+                <Input username={"email"} placeholder="Email" />
+                <p>Password</p>
+                <Input type={"password"} placeholder="Password" />
+                <SignupContainer>
+                    Don't have an account?
+                    <a> Register Now</a>
+                </SignupContainer>
+            </LoginContainer>
 
-            </PromptBox>
         </Container>
     )
 }
@@ -18,25 +26,32 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background: whitesmoke;
 `;
 
-const PromptBox = styled.div`
+const LoginContainer = styled.div`
     width: 42.5%;
     height: 70%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    border-radius: 25px;
+    border-radius: 5px;
     border: 2px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: rgba(255, 255, 255, 0.1);
 `
+
+const SignupContainer = styled.div`
+
+`;
 
 const Header = styled.h1`
     text-align: center;
     
 `;
-const Button = styled.button`
-    text-align: center;
-    
+
+const Input = styled.input`
 `
 
 export default Login;

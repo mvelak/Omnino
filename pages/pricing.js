@@ -14,18 +14,40 @@ export default function Pricing() {
                     <PricingBox>
                         <PricingHeader>Basic</PricingHeader>
                         <PricingLabel>Free</PricingLabel>
-                        - Free Tier
+                        <ul>
+                            <li>Up to one account</li>
+                            <li>Photo & Video posts</li>
+                            <li>20 posts a month</li>
+                            <li>Scheduled posting</li>
+                        </ul>
+                        <button>Select plan</button>
                     </PricingBox>
                     <PricingBox>
                         <PricingHeader>Influencer</PricingHeader>
                         <PricingLabel>13.99 / month</PricingLabel>
-                        - Up to 2 users
+                        <ul>
+                            <li>Up to two accounts</li>
+                            <li>Photo, Video & Story posts</li>
+                            <li>40 posts a month</li>
+                            <li>Scheduled posting</li>
+                            <li>Follower and comment interaction</li>
+                            <li>Detailed analytics</li>
+                        </ul>
+                        <button>Select plan</button>
                     </PricingBox>
                     <PricingBox>
                         <PricingHeader>Professional</PricingHeader>
                         <PricingLabel>25.99 / month</PricingLabel>
-                        - Up to 4 users
-
+                        <ul>
+                            <li>Up to six accounts</li>
+                            <li>Photo, Video & Story posts</li>
+                            <li>100 posts a month</li>
+                            <li>Scheduled posting</li>
+                            <li>Follower and comment interaction</li>
+                            <li>Detailed analytics</li>
+                            <li>Dedicated support</li>
+                        </ul>
+                        <button>Select plan</button>
                     </PricingBox>
                 </PricingContainer>
             </Container>
@@ -36,27 +58,32 @@ export default function Pricing() {
 }
 
 const Container = styled.section`
+    display: flex;
+    flex-direction: column;
     
 `;
 
 const PricingContainer = styled.div`
+    background-color: whitesmoke;
+    height: 500px;
     display: grid;
     grid-template-columns: repeat(3, minmax(185px, 1fr));
 `;
 
 const PricingBox = styled.div`
-    display: grid;
-    border-radius: 10px;
+    background: white;
+    display: flex;
+    flex-direction: column;
     border: 2px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 40px 20px;
 `;
 
 const PricingHeader = styled.div`
-    background: darkgray;
-    border-radius: 8px;
-    border: 1px solid black;
     text-align: center;
-    font-size: x-large;
+    padding: 20px;
+    border-bottom: 2px solid black;
+    font-size: 32px;
     font-weight: bold;
 `;
 

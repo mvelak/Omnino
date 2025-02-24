@@ -6,24 +6,17 @@ const NavBar = () => {
     return (
         <Container>
             <NavContainer>
-                <Column>
+                <LeftCol>
+                    <img src={"/colored-logo-32.png"} alt="logo" />
                     <NavLink href="/">Omnino</NavLink>
-                </Column>
-                <Column>
+                </LeftCol>
+                <RightCol>
                     <NavLink href="/about">About</NavLink>
-                </Column>
-                <Column>
                     <NavLink href="/contact">Contact</NavLink>
-                </Column>
-                <Column>
                     <NavLink href="/pricing">Pricing</NavLink>
-                </Column>
-                <Column>
                     <NavLink href="/auth/login">Login</NavLink>
-                </Column>
-                <Column>
                     <NavLink href="/ ">Try Free</NavLink>
-                </Column>
+                </RightCol>
             </NavContainer>
         </Container>
     );
@@ -31,30 +24,29 @@ const NavBar = () => {
 
 const Container = styled.nav`
     background: linear-gradient(0deg, rgba(47,47,50,1) 0%, rgba(0,0,0,1) 41%);
+    padding: 25px 30px;
 `;
-
-
 
 const NavContainer = styled.div`
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
 `;
 
-
-const Column = styled.div`
+const LeftCol = styled.div`
     display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-top: 10px;
-    margin-left: 40px;
-    margin-bottom: 10px;
+    align-items: center;
+
 `;
 
+const RightCol = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 40px;
+`
 
 const NavLink = styled(Link)`
     color: white;
 `;
-
-
 
 export default NavBar;

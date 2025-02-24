@@ -17,7 +17,6 @@ const Hero = ({ heading, subheading}) => {
 };
 
 const Container = styled.section`
-    background: gray;
     height: 80vh;
     display: flex;
     justify-content: center;
@@ -27,6 +26,9 @@ const Container = styled.section`
 const HeroContainer = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 `;
 
 const ButtonContainer = styled.div`
