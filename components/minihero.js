@@ -27,11 +27,13 @@ const HeroContainer = styled.div`
 `;
 
 const Heading = styled.div`
+    text-align: center;
     font-size: 64px;
     font-weight: bold;
 `;
 
 const Subheading = styled.div`
+    text-align: center;
     font-size: 24px;
     font-weight: bold;
 `;

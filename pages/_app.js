@@ -1,5 +1,13 @@
 import Head from 'next/head'
-import styled from "styled-components";
+import { StateContext } from "@/context/StateContext"
+import { createGlobalStyle } from 'styled-components'
+
+export const GlobalStyle = createGlobalStyle`
+  * 
+  {
+      font-family: "Avenir", Helvetica, Arial, sans-serif;
+  }
+`
 
 export default function App({ Component, pageProps }) {
     return (
@@ -14,13 +22,12 @@ export default function App({ Component, pageProps }) {
                 <meta name="msapplication-TileColor" content="#da532c"/>
                 <meta name="theme-color" content="#ffffff"/>
             </Head>
-            <Theme>
+
+            <GlobalStyle />
+
+            <StateContext>
                 <Component {...pageProps} />
-            </Theme>
+            </StateContext>
         </>
     )
 }
-
-const Theme = styled.div`
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-`

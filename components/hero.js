@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import SolidButton from "@/components/solidbutton";
+import BorderButton from "@/components/borderbutton";
 
 const Hero = ({ heading, subheading}) => {
     return (
@@ -8,8 +10,8 @@ const Hero = ({ heading, subheading}) => {
                 <Heading>{heading}</Heading>
                 <Subheading>{subheading}</Subheading>
                 <ButtonContainer>
-                    <GetStartedButton>Get Started</GetStartedButton>
-                    <AboutButton>Learn More</AboutButton>
+                    <SolidButton text={"Get Started"} />
+                    <BorderButton text={"Learn More"}/>
                 </ButtonContainer>
             </HeroContainer>
         </Container>
@@ -48,17 +50,5 @@ const Subheading = styled.div`
     font-size: 24px;
     font-weight: bold;
 `;
-
-const GetStartedButton = styled.button`
-    margin-right: 10px;
-    border-radius: 20px;
-`;
-
-const AboutButton = styled.button`
-    margin-left: 10px;
-    border-radius: 20px;
-    
-`;
-
 
 export default Hero;
