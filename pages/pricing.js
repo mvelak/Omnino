@@ -60,20 +60,16 @@ export default function Pricing() {
             <Navbar />
             <MiniHero heading="Pay as you grow" subheading="With our no hassle pricing plans" />
             <PricingContainer>
-                {plans.map(
-                    (plan) => (
-                        <PricingBox key={plan.name}>
-                            <PricingHeader>{plan.name}</PricingHeader>
-                            <PricingLabel>{plan.price}</PricingLabel>
-                            <FeatureList>
-                                {plan.features.map(
-                                    (feature) => (<li key={feature.text}>{feature.included ? "✓" : "✗"} {feature.text}</li>)
-                                )}
-                            </FeatureList>
-                            <ButtonContainer>{plan.button}</ButtonContainer>
-                        </PricingBox>
-                    )
-                )}
+                {plans.map((plan) => (
+                    <PricingBox key={plan.name}>
+                        <PricingHeader>{plan.name}</PricingHeader>
+                        <PricingLabel>{plan.price}</PricingLabel>
+                        <FeatureList>
+                            {plan.features.map((feature) => (<li>{feature.included ? "✓" : "✗"} {feature.text}</li>))}
+                        </FeatureList>
+                        <ButtonContainer>{plan.button}</ButtonContainer>
+                    </PricingBox>
+                ))}
             </PricingContainer>
             <Footer />
         </>

@@ -1,12 +1,15 @@
-import React from "react";
-import styled from "styled-components";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import LeftBlock from "@/components/leftblock";
 import RightBlock from "@/components/rightblock";
-import FooterSection from "@/components/footer";
+import Footer from "@/components/footer";
+
+
 
 export default function Home() {
+    const auth = getAuth();
+
   return (
       <>
           <Navbar />
@@ -22,7 +25,7 @@ export default function Home() {
               "habitant tempus. Mi lectus potenti curae mattis fermentum nullam enim porttitor. Natoque mauris nisl nisl nostra nascetur potenti habitant imperdiet." +
               "Consectetur mattis facilisi urna habitasse eu ridiculus ligula. Finibus massa massa aenean lectus habitasse. Primis turpis torquent luctus tristique" +
               "nulla fringilla lobortis ridiculus"}/>
-          <FooterSection />
+          <Footer />
       </>
   );
 }

@@ -53,7 +53,7 @@ const Column = styled.div`
     margin-bottom: 20px;
 `;
 
-const ColumnHeader = styled.h2`
+const ColumnHeader = styled.div`
     margin-top: 0;
     margin-bottom: 10;
 `;

@@ -37,7 +37,7 @@ const Heading = styled.h2`
     margin-bottom: 10px;
 `;
 
-const Body = styled.p`
+const Body = styled.div`
 `;
 
 export default RightBlock;

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
 
-export default function Menu() {
+const Menu = () => {
     const items = [
         {
             name: "Dashboard",
@@ -23,11 +24,16 @@ export default function Menu() {
         }
     ]
 
+    const [isExpanded, setExpanded] = useState(false);
+    const onClick = () => {
+        setExpanded((prev) => !prev);
+    };
+
     return (
         <MenuContainer>
             {items.map(
                 (item) => (
-                    <h1>{item.name}</h1>
+                    <MenuItem>{item.name}</MenuItem>
                 )
             )}
         </MenuContainer>
@@ -36,3 +42,8 @@ export default function Menu() {
 
 const MenuContainer = styled.div`
 `
+
+const MenuItem = styled.p`
+`
+
+export default Menu;

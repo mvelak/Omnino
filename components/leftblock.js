@@ -31,7 +31,7 @@ const Column = styled.div`
     padding: 20px;
 `;
 
-const Heading = styled.h2`
+const Heading = styled.div`
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 10px;

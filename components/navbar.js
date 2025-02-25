@@ -21,7 +21,7 @@ const NavBar = () => {
     );
 };
 
-const Container = styled.nav`
+const Container = styled.div`
     background: linear-gradient(0deg, rgba(47,47,50,1) 0%, rgba(0,0,0,1) 41%);
     padding: 25px 30px;
 `;

@@ -12,7 +12,7 @@ const MiniHero = ({ heading, subheading }) => {
     )
 }
 
-const Container = styled.section`
+const Container = styled.div`
     height: 30vh;
     display: flex;
     justify-content: center;

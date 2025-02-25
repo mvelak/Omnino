@@ -1,5 +1,3 @@
-import React from "react";
-import styled from "styled-components";
 import Navbar from "@/components/navbar";
 import MiniHero from "@/components/minihero";
 import LeftBlock from "@/components/leftblock";
@@ -18,7 +16,3 @@ export default function About() {
 
     )
 }
-
-const Container = styled.section`
-    
-`;

@@ -18,7 +18,7 @@ const Hero = ({ heading, subheading, solidButtonText, solidButtonLink, borderBut
     );
 };
 
-const Container = styled.section`
+const Container = styled.div`
     height: 80vh;
     display: flex;
     justify-content: center;
