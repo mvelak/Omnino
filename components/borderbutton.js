@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const BorderButton = ({ text, link }) => {
+    const router = useRouter();
+    const buttonClicked = () => router.push(link);
+
     return (
-        <Button onclick={link}>{text}</Button>
+        <Button onClick={buttonClicked}>{text}</Button>
     )
 }
 

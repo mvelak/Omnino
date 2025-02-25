@@ -6,8 +6,8 @@ const Footer = () => {
         <Container>
             <FooterContainer>
                 <Column>
-                    <img src={"/white-logo-1200.png"} alt="ok"/>
-                    © 2025 Omnino
+                    <img src={"/white-logo-1200.png"} alt="Omnino Logo" height={140} width={140} />
+                    <p>© 2025 Omnino</p>
                 </Column>
                 <Column>
                     <ColumnHeader>Company</ColumnHeader>

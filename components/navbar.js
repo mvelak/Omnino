@@ -12,10 +12,9 @@ const NavBar = () => {
                 </LeftCol>
                 <RightCol>
                     <NavLink href="/about">About</NavLink>
-                    <NavLink href="/contact">Contact</NavLink>
                     <NavLink href="/pricing">Pricing</NavLink>
                     <NavLink href="/auth/login">Login</NavLink>
-                    <NavLink href="/ ">Try Free</NavLink>
+                    <NavLink href="/auth/signup">Signup</NavLink>
                 </RightCol>
             </NavContainer>
         </Container>

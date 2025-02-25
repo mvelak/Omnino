@@ -1,16 +1,21 @@
 import React from "react"
 import styled from "styled-components";
 import Form from "next/form";
+import Link from "next/link";
 
 const Login = () => {
     return (
         <Container>
+            <Link href={"/"}>
+                <img src="/colored-logo-32.png" alt="Homepage" />
+                Omnino
+            </Link>
             <LoginContainer>
                 <Header>Log In</Header>
                 <p>Email</p>
-                <Input username={"email"} placeholder="Email" />
+                <Input username={"email"} placeholder="e.g. johndoe@gmail.com" />
                 <p>Password</p>
-                <Input type={"password"} placeholder="Password" />
+                <Input type={"password"} placeholder="e.g. 12345" />
                 <SignupContainer>
                     <span>Don't have an account? </span>
                     <a href={"/auth/signup"}>Register Now</a>
@@ -22,6 +27,7 @@ const Login = () => {
 
 const Container = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;

@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import SolidButton from "@/components/solidbutton";
 import BorderButton from "@/components/borderbutton";
 
-const Hero = ({ heading, subheading}) => {
+const Hero = ({ heading, subheading, solidButtonText, solidButtonLink, borderButtonText, borderButtonLink}) => {
     return (
         <Container>
             <HeroContainer>
                 <Heading>{heading}</Heading>
                 <Subheading>{subheading}</Subheading>
                 <ButtonContainer>
-                    <SolidButton text={"Get Started"} />
-                    <BorderButton text={"Learn More"}/>
+                    <SolidButton text={solidButtonText} link={solidButtonLink} />
+                    <BorderButton text={borderButtonText} link={borderButtonLink} />
                 </ButtonContainer>
             </HeroContainer>
         </Container>

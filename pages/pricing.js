@@ -20,9 +20,9 @@ export default function Pricing() {
                 { text: "Scheduled posting", included: true },
                 { text: "Follower and comment interaction", included: false },
                 { text: "Detailed analytics", included: false },
-                { text: "Dedicated support", included: false },
+                { text: "Content library", included: false }
             ],
-            button: <SolidButton text={"Select plan"} />,
+            button: <SolidButton text={"Select plan"} link={"/about"}/>
         },
         {
             name: "Influencer",
@@ -34,9 +34,9 @@ export default function Pricing() {
                 { text: "Scheduled posting", included: true },
                 { text: "Follower and comment interaction", included: true },
                 { text: "Detailed analytics", included: true },
-                { text: "Dedicated support", included: false },
+                { text: "Content library", included: false }
             ],
-            button: <BorderButton text={"Select plan"} />,
+            button: <BorderButton text={"Select plan"} link={"/about"}/>
         },
         {
             name: "Professional",
@@ -48,9 +48,9 @@ export default function Pricing() {
                 { text: "Scheduled posting", included: true },
                 { text: "Follower and comment interaction", included: true },
                 { text: "Detailed analytics", included: true },
-                { text: "Dedicated support", included: true },
+                { text: "Content library", included: true }
             ],
-            button: <SolidButton text={"Select plan"} />,
+            button: <SolidButton text={"Select plan"} link={"/about"}/>
         },
     ];
 
@@ -60,18 +60,20 @@ export default function Pricing() {
             <Navbar />
             <MiniHero heading="Pay as you grow" subheading="With our no hassle pricing plans" />
             <PricingContainer>
-                {plans.map((plan) => (
-                    <PricingBox key={plan.name}>
-                        <PricingHeader>{plan.name}</PricingHeader>
-                        <PricingLabel>{plan.price}</PricingLabel>
-                        <FeatureList>
-                            {plan.features.map((feature) => (
-                                <li key={feature.text}>{feature.included ? "✔" : "✘"} {feature.text}</li>
-                            ))}
-                        </FeatureList>
-                        <ButtonContainer>{plan.button}</ButtonContainer>
-                    </PricingBox>
-                ))}
+                {plans.map(
+                    (plan) => (
+                        <PricingBox key={plan.name}>
+                            <PricingHeader>{plan.name}</PricingHeader>
+                            <PricingLabel>{plan.price}</PricingLabel>
+                            <FeatureList>
+                                {plan.features.map(
+                                    (feature) => (<li key={feature.text}>{feature.included ? "✓" : "✗"} {feature.text}</li>)
+                                )}
+                            </FeatureList>
+                            <ButtonContainer>{plan.button}</ButtonContainer>
+                        </PricingBox>
+                    )
+                )}
             </PricingContainer>
             <Footer />
         </>
@@ -96,6 +98,7 @@ const PricingBox = styled.div`
     background: white;
     display: flex;
     flex-direction: column;
+    border-radius: 5px;
     border: 2px solid black;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 40px 20px;

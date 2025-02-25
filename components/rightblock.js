@@ -3,28 +3,41 @@ import styled from "styled-components";
 
 const RightBlock = ({heading, body}) => {
     return (
-        <Section>
-            <Heading>{heading}</Heading>
-            <Body>{body}</Body>
-        </Section>
+        <Container>
+            <Column>
+                <Body>{body}</Body>
+            </Column>
+            <Column>
+                <Heading>{heading}</Heading>
+            </Column>
+        </Container>
     );
 }
 
+const Container = styled.div`
+    align-items: center;
+    justify-content: center;
+    background: white;
+    height: 50vh;
+    display: flex;
+`;
+
+const Column = styled.div`   
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+`;
+
 const Heading = styled.h2`
-    font-size: 20px;
+    font-size: 32px;
     font-weight: bold;
     margin-bottom: 10px;
 `;
 
-const Section = styled.div`
-    background: whitesmoke;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: right;
+const Body = styled.p`
 `;
 
-const Body = styled.div`
-
-`;
 export default RightBlock;

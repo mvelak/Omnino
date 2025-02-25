@@ -12,7 +12,7 @@ export default function About() {
             <Navbar />
             <MiniHero heading={"What we stand for"} subheading={"Our goal is to streamline social media account management"} />
             <LeftBlock heading={"How we started"} body={""}/>
-            <RightBlock heading={"Future Growth"} body={"Keep an eye out for more social media platform integration. Meta and X integrations are in the works."}/>
+            <RightBlock heading={"Future Growth"} body={"Keep an eye out for more social media platform integration."}/>
             <Footer />
         </>
 
