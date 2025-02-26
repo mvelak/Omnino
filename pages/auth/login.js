@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Form from "next/form";
 import Link from "next/link";
+import Form from "next/form";
+import { getAuth } from "firebase/auth";
+
 
 const Login = () => {
     return (

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { onIdTokenChanged } from 'firebase/auth';
-import {auth} from '@/backend/Firebase'
+import { auth } from '@/backend/firebase'
 
 const Context = createContext();
 
@@ -13,7 +13,7 @@ export const StateContext = ({ children }) => {
     const router = useRouter()
     const { asPath } = useRouter()
 
-    // AUTHENTICATION REMEMBER ME USEEFFECT
+    // AUTHENTICATION REMEMBER ME USE EFFECT
     useEffect(() => {
     const unsubscribe = onIdTokenChanged(auth, (user) => {
         if(user){

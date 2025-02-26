@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import Form from "next/form";
 import Link from "next/link";
+import Form from "next/form";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setMessage(""); // Clear any previous message
+
+        try {
+            // Create user with email and password
+            const userCredential = await createUserWithEmailAndPassword(getAuth(), email, password);
+            setMessage("User created successfully!"); // Success message
+            console.log(userCredential.user); // Optional: Log the user details
+        } catch (error) {
+            setMessage(`Error: ${error.message}`); // Display error message
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <Container>
             <Link href={"/"}>
@@ -12,26 +35,40 @@ const Signup = () => {
             </Link>
             <SignupContainer>
                 <Header>Sign Up</Header>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Label>Email</Label>
-                    <Input type={"email"} placeholder="e.g. johndoe@gmail.com" />
+                    <Input
+                        type="email"
+                        placeholder="e.g. johndoe@gmail.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
 
                     <Label>Password</Label>
-                    <Input type={"password"} placeholder="e.g. 12345" />
+                    <Input
+                        type="password"
+                        placeholder="e.g. 12345"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
 
-                    <Label>Confirm Password</Label>
-                    <Input type={"password"} placeholder="e.g. 12345" />
-
-                    <SubmitButton type="submit">Enter</SubmitButton>
+                    <SubmitButton type="submit" disabled={isLoading}>
+                        {isLoading ? "Loading..." : "Sign Up"}
+                    </SubmitButton>
                 </Form>
+
+                {message && <Message>{message}</Message>} {/* Display success or error message */}
+
                 <LoginContainer>
                     <span>Already have an account? </span>
-                    <a href={"/auth/login"}>Log In</a>
+                    <a href="/auth/login">Log In</a>
                 </LoginContainer>
             </SignupContainer>
         </Container>
     );
-}
+};
 
 const Container = styled.div`
     display: flex;
@@ -94,6 +131,17 @@ const SubmitButton = styled.button`
     &:hover {
         background-color: forestgreen;
     }
+
+    &:disabled {
+        background-color: grey;
+        cursor: not-allowed;
+    }
+`;
+
+const Message = styled.p`
+    text-align: center;
+    margin-top: 15px;
+    color: red;
 `;
 
 const LoginContainer = styled.div`
