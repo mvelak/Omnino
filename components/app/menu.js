@@ -11,12 +11,6 @@ const Menu = () => {
         {
             name: "Create",
             url: "/app/create",
-            subitems: [
-                {
-                    name: "Photo",
-                    url: "/app/create-photo"
-                }
-            ]
         },
         {
             name: "Interact",
@@ -33,7 +27,9 @@ const Menu = () => {
         <MenuContainer>
             {items.map(
                 (item) => (
-                    <MenuItem>{item.name}</MenuItem>
+                    <MenuItem>
+                        <a href={item.url}>{item.name}</a>
+                    </MenuItem>
                 )
             )}
         </MenuContainer>
@@ -41,9 +37,17 @@ const Menu = () => {
 }
 
 const MenuContainer = styled.div`
-`
+`;
 
-const MenuItem = styled.p`
-`
+const MenuItem = styled.div`
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    padding: 10px 0 10px 10px;
+    align-items: center;
+    justify-content: space-between;
+`;
+
 
 export default Menu;

@@ -3,26 +3,27 @@ import styled from "styled-components";
 import Link from "next/link";
 import Form from "next/form";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {useRouter} from "next/router";
+
 
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        setMessage(""); // Clear any previous message
+        setMessage("");
 
         try {
-            // Create user with email and password
             const userCredential = await createUserWithEmailAndPassword(getAuth(), email, password);
-            setMessage("User created successfully!"); // Success message
-            console.log(userCredential.user); // Optional: Log the user details
+            setMessage("Created account successfully!"); // Success message
+            router.push("/app/dashboard");
         } catch (error) {
-            setMessage(`Error: ${error.message}`); // Display error message
-        } finally {
+            setMessage(`${error.message}`); // Error message
             setIsLoading(false);
         }
     };
@@ -39,7 +40,6 @@ const Signup = () => {
                     <Label>Email</Label>
                     <Input
                         type="email"
-                        placeholder="e.g. johndoe@gmail.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -48,7 +48,6 @@ const Signup = () => {
                     <Label>Password</Label>
                     <Input
                         type="password"
-                        placeholder="e.g. 12345"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -59,7 +58,7 @@ const Signup = () => {
                     </SubmitButton>
                 </Form>
 
-                {message && <Message>{message}</Message>} {/* Display success or error message */}
+                <Message>{message}</Message>
 
                 <LoginContainer>
                     <span>Already have an account? </span>
@@ -141,7 +140,7 @@ const SubmitButton = styled.button`
 const Message = styled.p`
     text-align: center;
     margin-top: 15px;
-    color: red;
+    color: black;
 `;
 
 const LoginContainer = styled.div`

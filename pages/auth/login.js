@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Form from "next/form";
-import { getAuth } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {useRouter} from "next/router";
 
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setMessage("");
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(getAuth(), email, password);
+            setMessage("Created account successfully!"); // Success message
+            router.push("/app/dashboard");
+        } catch (error) {
+            setMessage(`${error.message}`); // Error message
+            setIsLoading(false);
+        }
+    };
+
     return (
         <Container>
             <Link href={"/"}>
@@ -14,15 +36,30 @@ const Login = () => {
             </Link>
             <LoginContainer>
                 <Header>Log In</Header>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Label>Email</Label>
-                    <Input type={"email"} placeholder="e.g. johndoe@gmail.com" />
+                    <Input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
 
                     <Label>Password</Label>
-                    <Input type={"password"} placeholder="e.g. 12345" />
+                    <Input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
 
-                    <SubmitButton type="submit">Enter</SubmitButton>
+                    <SubmitButton type="submit" disabled={isLoading}>
+                        {isLoading ? "Loading..." : "Sign Up"}
+                    </SubmitButton>
                 </Form>
+
+                <Message>{message}</Message>
+
                 <SignupContainer>
                     <span>Don't have an account? </span>
                     <a href={"/auth/signup"}>Register Now</a>
@@ -93,6 +130,17 @@ const SubmitButton = styled.button`
     &:hover {
         background-color: forestgreen;
     }
+    
+    &:disabled {
+        background-color: grey;
+        cursor: not-allowed;
+    }
+`;
+
+const Message = styled.p`
+    text-align: center;
+    margin-top: 15px;
+    color: black;
 `;
 
 const SignupContainer = styled.div`

@@ -20,8 +20,7 @@ export const StateContext = ({ children }) => {
            console.log('Token or user state changed:', user)
            user.getIdToken().then((token) => {
              console.log('New ID token:', token)
-           }
-           )
+           })
            setUser(user)
          } else {
            setUser(null) //there is no user signed in

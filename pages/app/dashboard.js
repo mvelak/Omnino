@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Menu from "@/components/app/menu";
+import { useStateContext } from "@/context/StateContext";
 
 export default function Dashboard() {
     const [isExpanded, setExpanded] = useState(false);
@@ -16,13 +17,16 @@ export default function Dashboard() {
                 <IconContainer onClick={toggleDrawer}>
                     <Icon src={isExpanded ? "/down.png" : "/menu.png"} alt="Sidebar Icon" />
                 </IconContainer>
-                <Heading><a href={"/app/dashboard"}>Omnino</a></Heading>
+                <Heading>
+                    <img src={"/colored-logo-32.png"} alt="logo" />
+                    <a href={"/"}>Omnino</a>
+                </Heading>
             </HeadingContainer>
             <InnerContainer>
                 <SidebarContent isExpanded={isExpanded}>
                     <Menu />
                 </SidebarContent>
-                <Content>Testing</Content>
+                <Content>Welcome {}</Content>
             </InnerContainer>
         </Container>
     );
