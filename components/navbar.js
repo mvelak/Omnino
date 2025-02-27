@@ -1,8 +1,25 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { useStateContext } from "@/context/StateContext";
+import { getAuth, signOut } from "firebase/auth";
+
 
 const NavBar = () => {
+    const context = useStateContext();
+    const { user, setUser } = context;
+    const auth = getAuth();
+
+    const logout = () => {
+        signOut(auth).then(() => {
+            setUser(null);
+            console.log("User logged out");
+        }).catch((error) => {
+            console.log(`Error: ${error}`);
+        });
+    }
+
+    // Login/Signup or Logout/Dashboard depending on whether the user is signed in
     return (
         <Container>
             <NavContainer>
@@ -13,8 +30,8 @@ const NavBar = () => {
                 <RightCol>
                     <NavLink href="/about">About</NavLink>
                     <NavLink href="/pricing">Pricing</NavLink>
-                    <NavLink href="/auth/login">Login</NavLink>
-                    <NavLink href="/auth/signup">Signup</NavLink>
+                    {user === null ? <NavLink href="/auth/login">Login</NavLink> : <NavLink  href="/" onClick={logout}>Log Out</NavLink>}
+                    {user === null ? <NavLink href="/auth/signup">Signup</NavLink> : <NavLink href="/app/dashboard">Dashboard</NavLink>}
                 </RightCol>
             </NavContainer>
         </Container>
@@ -46,6 +63,10 @@ const RightCol = styled.div`
 
 const NavLink = styled(Link)`
     color: white;
+`;
+
+const LogoutButton = styled.button`
+    
 `;
 
 export default NavBar;

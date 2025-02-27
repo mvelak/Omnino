@@ -26,7 +26,7 @@ export default function Dashboard() {
                 <SidebarContent isExpanded={isExpanded}>
                     <Menu />
                 </SidebarContent>
-                <Content>Welcome {}</Content>
+                <Content>Welcome </Content>
             </InnerContainer>
         </Container>
     );
