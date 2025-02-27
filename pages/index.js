@@ -1,4 +1,3 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import LeftBlock from "@/components/leftblock";
@@ -8,8 +7,6 @@ import Footer from "@/components/footer";
 
 
 export default function Home() {
-    const auth = getAuth();
-
   return (
       <>
           <Navbar />
