@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
+import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useStateContext } from "@/context/StateContext";
 import { getAuth, signOut } from "firebase/auth";
-import Logo from "@/components/Logo";
+import Logo from "@/components/logo";
 
 
 const NavBar = () => {
@@ -62,10 +62,6 @@ const RightCol = styled.div`
 
 const NavLink = styled(Link)`
     color: white;
-`;
-
-const LogoutButton = styled.button`
-    
 `;
 
 export default NavBar;
