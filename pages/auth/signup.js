@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Link from "next/link";
 import Form from "next/form";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {useRouter} from "next/router";
+import Logo from "@/components/logo";
 
 
 const Signup = () => {
@@ -19,7 +19,7 @@ const Signup = () => {
         setMessage("");
 
         try {
-            const userCredential = await createUserWithEmailAndPassword(getAuth(), email, password);
+            await createUserWithEmailAndPassword(getAuth(), email, password);
             setMessage("Created account successfully!"); // Success message
             router.push("/app/dashboard");
         } catch (error) {
@@ -30,10 +30,7 @@ const Signup = () => {
 
     return (
         <Container>
-            <Link href={"/"}>
-                <img src="/colored-logo-32.png" alt="Homepage" />
-                Omnino
-            </Link>
+            <Logo />
             <SignupContainer>
                 <Header>Sign Up</Header>
                 <Form onSubmit={handleSubmit}>

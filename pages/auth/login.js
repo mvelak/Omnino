@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Form from "next/form";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {useRouter} from "next/router";
-import Logo from "@/components/Logo";
+import Logo from "@/components/logo";
 
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
         setMessage("");
 
         try {
-            const userCredential = await signInWithEmailAndPassword(getAuth(), email, password);
+            await signInWithEmailAndPassword(getAuth(), email, password);
             setMessage("Logged in successfully!"); // Success message
             router.push("/app/dashboard");
         } catch (error) {
