@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Link from "next/link";
 import Form from "next/form";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {useRouter} from "next/router";
+import Logo from "@/components/Logo";
 
 
 const Login = () => {
@@ -20,7 +20,7 @@ const Login = () => {
 
         try {
             const userCredential = await signInWithEmailAndPassword(getAuth(), email, password);
-            setMessage("Created account successfully!"); // Success message
+            setMessage("Logged in successfully!"); // Success message
             router.push("/app/dashboard");
         } catch (error) {
             setMessage(`${error.message}`); // Error message
@@ -30,10 +30,7 @@ const Login = () => {
 
     return (
         <Container>
-            <Link href={"/"}>
-                <img src="/colored-logo-32.png" alt="Homepage" />
-                Omnino
-            </Link>
+            <Logo />
             <LoginContainer>
                 <Header>Log In</Header>
                 <Form onSubmit={handleSubmit}>
@@ -77,6 +74,7 @@ const Container = styled.div`
     justify-content: center;
     height: 100vh;
     background: linear-gradient(140deg, rgba(228,228,228,1) 10%, rgba(188,202,255,1) 81%, rgba(164,182,255,1) 100%);
+    background-size: 120% 120%;
 `;
 
 const LoginContainer = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
-const BorderButton = ({ text, link }) => {
+const HollowButton = ({ text, link }) => {
     const router = useRouter();
     const buttonClicked = () => router.push(link);
 
@@ -12,19 +12,20 @@ const BorderButton = ({ text, link }) => {
 }
 
 const Button = styled.button`
-    background: whitesmoke; /* Gradient background */
+    background: white;
+    color: black;
     font-size: 14px;
     font-weight: bold;
     border: 2px solid black;
-    border-radius: 20px; /* Rounded corners */
+    border-radius: 20px;
     cursor: pointer;
     padding: 10px 20px;
 
     transition: all 0.3s ease;
     &:hover {
-        transform: scale(1.05); /* Slight scaling on hover */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+        background: black;
+        color: white;
     }
 `;
 
-export default BorderButton;
+export default HollowButton;

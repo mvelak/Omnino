@@ -1,11 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import { useState, useEffect } from "react";
-import Menu from "@/components/app/menu";
+import React, { useState } from "react";
 import { useStateContext } from "@/context/StateContext";
+import styled from "styled-components";
+import Loading from "@/components/app/loading";
+import Logo from "@/components/logo";
+import Sidebar from "@/components/app/sidebar";
+import Home from "@/components/app/content/home";
+import Create from "@/components/app/content/create";
+import Interact from "@/components/app/content/interact";
+import Analytics from "@/components/app/content/analytics";
+
 
 export default function Dashboard() {
+    const context = useStateContext();
+    const { user } = context;
+
     const [isExpanded, setExpanded] = useState(false);
+    const [selectedContent, setSelectedContent] = useState("Home");
 
     const toggleDrawer = () => {
         setExpanded((prev) => !prev);
@@ -13,68 +23,88 @@ export default function Dashboard() {
 
     return (
         <Container>
-            <HeadingContainer>
-                <IconContainer onClick={toggleDrawer}>
-                    <Icon src={isExpanded ? "/down.png" : "/menu.png"} alt="Sidebar Icon" />
-                </IconContainer>
-                <Heading>
-                    <img src={"/colored-logo-32.png"} alt="logo" />
-                    <a href={"/"}>Omnino</a>
-                </Heading>
-            </HeadingContainer>
-            <InnerContainer>
-                <SidebarContent isExpanded={isExpanded}>
-                    <Menu />
-                </SidebarContent>
-                <Content>Welcome </Content>
-            </InnerContainer>
+            { user ?
+                <>
+                <HeadingContainer>
+                    <IconContainer onClick={toggleDrawer}>
+                        <Icon src={isExpanded ? "/down.png" : "/menu.png"} alt="Sidebar Icon" />
+                    </IconContainer>
+                    <LogoContainer>
+                        <Logo />
+                    </LogoContainer>
+                </HeadingContainer>
+                <InnerContainer>
+                    <SidebarContainer isExpanded={isExpanded}>
+                        <Sidebar setSelectedContent={setSelectedContent}/>
+                    </SidebarContainer>
+                    <ContentContainer>
+                        {selectedContent === "Home" ? <Home user={user}/> : null}
+                        {selectedContent === "Create" ? <Create user={user}/> : null}
+                        {selectedContent === "Interact" ? <Interact user={user}/> : null}
+                        {selectedContent === "Analytics" ? <Analytics user={user}/> : null}
+                    </ContentContainer>
+                </InnerContainer>
+                </>
+            : <Loading />}
         </Container>
     );
 }
 
 const Container = styled.div`
-    text-align: center;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: white-smoke;
+`;
+
+const HeadingContainer = styled.div`
+    height: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
 `;
 
 const InnerContainer = styled.div`
+    height: 95%;
+    width: 100%;
     display: flex;
-    flex: 1;
-`
-
-const HeadingContainer = styled.div`
-    display: flex;
-    border-bottom: 4px solid gray;
-    height: 5vh;
+    flex-direction: row;
 `;
 
 const IconContainer = styled.div`
+    display: flex;
     justify-content: left;
-    margin-left: 2vh;
+    margin-left: 2%;
+    align-items: center;
+`;
+
+const LogoContainer = styled.div`
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Icon = styled.img`
-    height: 4vh;
-    width: 2vw;
+    height: 32px;
+    width: 32px;
 `;
 
-const Heading = styled.div`
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+const SidebarContainer = styled.aside`
+    width: ${(props) => (props.isExpanded ? "15%" : "0%")};
+    height: 100%;
+    background: whitesmoke;
+    transition: width 0.3s ease;
+    border-right: 2px solid black;
+`;
+
+const ContentContainer = styled.div`
+    height: 100%;
+    width: 100%;
     flex: 1;
-`;
-
-const SidebarContent = styled.aside`
-    background: #d8dcd6;
-    transition: width 0.3s;
-    width: ${(props) => (props.isExpanded ? "20vw" : "0vw")};
-`;
-
-const Content = styled.div`
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
 `;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useStateContext } from "@/context/StateContext";
 import { getAuth, signOut } from "firebase/auth";
+import Logo from "@/components/Logo";
 
 
 const NavBar = () => {
@@ -24,8 +25,7 @@ const NavBar = () => {
         <Container>
             <NavContainer>
                 <LeftCol>
-                    <img src={"/colored-logo-32.png"} alt="logo" />
-                    <NavLink href="/">Omnino</NavLink>
+                    <Logo />
                 </LeftCol>
                 <RightCol>
                     <NavLink href="/about">About</NavLink>
@@ -52,7 +52,6 @@ const NavContainer = styled.div`
 const LeftCol = styled.div`
     display: flex;
     align-items: center;
-
 `;
 
 const RightCol = styled.div`

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SolidButton from "@/components/solidbutton";
-import BorderButton from "@/components/borderbutton";
+import HollowButton from "@/components/hollowButton";
 
 const Hero = ({ heading, subheading, solidButtonText, solidButtonLink, borderButtonText, borderButtonLink}) => {
     return (
@@ -11,7 +11,7 @@ const Hero = ({ heading, subheading, solidButtonText, solidButtonLink, borderBut
                 <Subheading>{subheading}</Subheading>
                 <ButtonContainer>
                     <SolidButton text={solidButtonText} link={solidButtonLink} />
-                    <BorderButton text={borderButtonText} link={borderButtonLink} />
+                    <HollowButton text={borderButtonText} link={borderButtonLink} />
                 </ButtonContainer>
             </HeroContainer>
         </Container>

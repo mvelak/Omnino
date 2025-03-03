@@ -77,6 +77,7 @@ const Container = styled.div`
     justify-content: center;
     height: 100vh;
     background: linear-gradient(140deg, rgba(228,228,228,1) 10%, rgba(188,255,205,1) 81%, rgba(164,252,205,1) 100%);
+    background-size: 120% 120%;
 `;
 
 const SignupContainer = styled.div`

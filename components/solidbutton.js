@@ -12,19 +12,19 @@ const SolidButton = ({ text, link }) => {
 }
 
 const Button = styled.button`
-    background: black; /* Gradient background */
-    color: whitesmoke;
+    background: black; 
+    color: white;
     font-size: 14px;
     font-weight: bold;
-    border: none;
-    border-radius: 20px; /* Rounded corners */
+    border: 2px solid black;
+    border-radius: 20px;
     cursor: pointer;
     padding: 10px 20px;
 
     transition: all 0.3s ease;
     &:hover {
-        transform: scale(1.05); /* Slight scaling on hover */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+        background: white;
+        color: black;
     }
 `;
 

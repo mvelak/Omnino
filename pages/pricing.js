@@ -4,7 +4,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import MiniHero from "@/components/minihero";
 import SolidButton from "@/components/solidbutton";
-import BorderButton from "@/components/borderbutton";
+import HollowButton from "@/components/hollowButton";
 
 export default function Pricing() {
     // Can update the different pricing plans as needed in this plans array
@@ -17,8 +17,8 @@ export default function Pricing() {
                 { text: "Up to one account", included: true },
                 { text: "Photo & Video posts", included: true },
                 { text: "20 posts a month", included: true },
-                { text: "Scheduled posting", included: true },
-                { text: "Follower and comment interaction", included: false },
+                { text: "Follower and comment interaction", included: true },
+                { text: "Scheduled posting", included: false },
                 { text: "Detailed analytics", included: false },
                 { text: "Content library", included: false }
             ],
@@ -31,12 +31,12 @@ export default function Pricing() {
                 { text: "Up to two accounts", included: true },
                 { text: "Photo, Video & Story posts", included: true },
                 { text: "40 posts a month", included: true },
-                { text: "Scheduled posting", included: true },
                 { text: "Follower and comment interaction", included: true },
+                { text: "Scheduled posting", included: true },
                 { text: "Detailed analytics", included: true },
                 { text: "Content library", included: false }
             ],
-            button: <BorderButton text={"Select plan"} link={"/about"}/>
+            button: <HollowButton text={"Select plan"} link={"/about"}/>
         },
         {
             name: "Professional",
@@ -45,8 +45,8 @@ export default function Pricing() {
                 { text: "Up to six accounts", included: true },
                 { text: "Photo, Video & Story posts", included: true },
                 { text: "100 posts a month", included: true },
-                { text: "Scheduled posting", included: true },
                 { text: "Follower and comment interaction", included: true },
+                { text: "Scheduled posting", included: true },
                 { text: "Detailed analytics", included: true },
                 { text: "Content library", included: true }
             ],
