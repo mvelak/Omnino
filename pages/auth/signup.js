@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "next/form";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore"
 import {useRouter} from "next/router";
 import Logo from "@/components/logo";
 
@@ -9,9 +10,12 @@ import Logo from "@/components/logo";
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState(""); // Add state for name
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
     const router = useRouter();
+    const db = getFirestore();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +23,8 @@ const Signup = () => {
         setMessage("");
 
         try {
-            await createUserWithEmailAndPassword(getAuth(), email, password);
+            const userCred = await createUserWithEmailAndPassword(getAuth(), email, password);
+            await setDoc(doc(db, "users", userCred.user.uid), {name: name, email: email, plan: "basic",});
             setMessage("Created account successfully!"); // Success message
             router.push("/app/dashboard");
         } catch (error) {
@@ -34,6 +39,14 @@ const Signup = () => {
             <SignupContainer>
                 <Header>Sign Up</Header>
                 <Form onSubmit={handleSubmit}>
+                    <Label>Name</Label>
+                    <Input
+                        type="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+
                     <Label>Email</Label>
                     <Input
                         type="email"

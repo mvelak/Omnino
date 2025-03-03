@@ -1,10 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { useStateContext } from "@/context/StateContext";
+import Loading from "@/components/app/loading";
 
-const Home = ({ user }) => {
+const Home = () => {
+    // TODO: fix errors with userInfo being null on initial dashboard load
+    const { user, userInfo } = useStateContext();
+
+    if (user === undefined || userInfo === undefined) {
+        return <Loading />;
+    }
+
     return (
-            <Container>Welcome {user.email}!</Container>
-    )
+        <Container>Welcome {userInfo.name}!</Container> // Assuming userInfo has the name field
+    );
 }
 
 const Container = styled.div`

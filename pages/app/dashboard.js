@@ -12,7 +12,6 @@ import Analytics from "@/components/app/content/analytics";
 
 export default function Dashboard() {
     const context = useStateContext();
-    const { user } = context;
 
     const [isExpanded, setExpanded] = useState(false);
     const [selectedContent, setSelectedContent] = useState("Home");
@@ -23,7 +22,7 @@ export default function Dashboard() {
 
     return (
         <Container>
-            { user ?
+            { context.user ?
                 <>
                 <HeadingContainer>
                     <IconContainer onClick={toggleDrawer}>
@@ -38,10 +37,10 @@ export default function Dashboard() {
                         <Sidebar setSelectedContent={setSelectedContent}/>
                     </SidebarContainer>
                     <ContentContainer>
-                        {selectedContent === "Home" ? <Home user={user}/> : null}
-                        {selectedContent === "Create" ? <Create user={user}/> : null}
-                        {selectedContent === "Interact" ? <Interact user={user}/> : null}
-                        {selectedContent === "Analytics" ? <Analytics user={user}/> : null}
+                        {selectedContent === "Home" ? <Home /> : null}
+                        {selectedContent === "Create" ? <Create /> : null}
+                        {selectedContent === "Interact" ? <Interact /> : null}
+                        {selectedContent === "Analytics" ? <Analytics /> : null}
                     </ContentContainer>
                 </InnerContainer>
                 </>

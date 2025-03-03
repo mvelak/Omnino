@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useStateContext } from "@/context/StateContext";
 
-const Create = ({ user }) => {
+
+const Create = () => {
+    const { user, userInfo } = useStateContext();
+
     const [file, setFile] = useState(null);
     const [fileURL, setFileURL] = useState(null);
     const [caption, setCaption] = useState("");
