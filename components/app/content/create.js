@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useSession} from "next-auth/react";
-import postToBluesky from "@/pages/api/blueskyAPI";
-import postToX from "@/pages/api/xAPI";
-
-
+import { useSession } from "next-auth/react";
 
 const Create = () => {
     const { data: session } = useSession();
@@ -49,31 +45,19 @@ const Create = () => {
         setX(!x);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Submitted post")
 
         if (bluesky) {
-            (async () => {
-                try {
-                    await postToBluesky(caption);
-                } catch (error) {
-                    console.error('Error posting to Bluesky:', error);
-                }
-            })();
+            await fetch("/api/postToBluesky", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ caption })
+            });
         }
-
-        if (x) {
-            (async () => {
-                try {
-                    await postToX(caption, session.accessToken);
-                } catch (error) {
-                    console.error('Error posting to X:', error);
-                }
-            })();
-        }
-
-
     };
 
     const getFilePreview = () => {

@@ -9,20 +9,4 @@ export default NextAuth({
             version: "2.0",
         })
     ],
-    callbacks: {
-        async jwt({ token, account }) {
-            // This callback is called when the JWT is created or updated
-            if (account) {
-                token.accessToken = account.access_token;
-                token.refreshToken = account.refresh_token;
-            }
-            return token;
-        },
-        async session({ session, token }) {
-            // The token here includes the accessToken and refreshToken
-            session.accessToken = token.accessToken;
-            session.refreshToken = token.refreshToken;
-            return session;
-        },
-    },
 })

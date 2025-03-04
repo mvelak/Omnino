@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "next/form";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { logIn } from "@/backend/firebase";
 import {useRouter} from "next/router";
 import Logo from "@/components/logo";
 
@@ -18,14 +18,14 @@ const Login = () => {
         setIsLoading(true);
         setMessage("");
 
-        try {
-            await signInWithEmailAndPassword(getAuth(), email, password);
-            setMessage("Logged in successfully!"); // Success message
+        if (await logIn(email, password) === true) {
+            setMessage("Logged in successfully!");
             router.push("/app/dashboard");
-        } catch (error) {
-            setMessage(`${error.message}`); // Error message
-            setIsLoading(false);
+        } else {
+            setMessage("Error logging in");
         }
+
+        setIsLoading(false);
     };
 
     return (
