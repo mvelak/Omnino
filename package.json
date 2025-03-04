@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@atproto/api": "^0.14.7",
     "axios": "^1.8.1",
     "firebase": "^11.3.1",
     "next": "^15.1.7",
+    "next-auth": "^4.24.11",
+    "node-fetch": "^3.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0",

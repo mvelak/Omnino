@@ -18,34 +18,36 @@ export default function Dashboard() {
 
     const toggleDrawer = () => {
         setExpanded((prev) => !prev);
+        console.log(process.env.TWITTER_CLIENT_ID);
     };
 
     return (
         <Container>
             { context.user ?
                 <>
-                <HeadingContainer>
-                    <IconContainer onClick={toggleDrawer}>
-                        <Icon src={isExpanded ? "/down.png" : "/menu.png"} alt="Sidebar Icon" />
-                    </IconContainer>
-                    <LogoContainer>
-                        <Logo />
-                    </LogoContainer>
-                </HeadingContainer>
-                <InnerContainer>
-                    <SidebarContainer isExpanded={isExpanded}>
-                        <Sidebar setSelectedContent={setSelectedContent}/>
-                    </SidebarContainer>
-                    <ContentContainer>
-                        {selectedContent === "Home" ? <Home /> : null}
-                        {selectedContent === "Create" ? <Create /> : null}
-                        {selectedContent === "Interact" ? <Interact /> : null}
-                        {selectedContent === "Analytics" ? <Analytics /> : null}
-                    </ContentContainer>
-                </InnerContainer>
+                    <HeadingContainer>
+                        <IconContainer onClick={toggleDrawer}>
+                            <Icon src={isExpanded ? "/down.png" : "/menu.png"} alt="Sidebar Icon" />
+                        </IconContainer>
+                        <LogoContainer>
+                            <Logo />
+                        </LogoContainer>
+                    </HeadingContainer>
+                    <InnerContainer>
+                        <SidebarContainer isExpanded={isExpanded}>
+                            <Sidebar setSelectedContent={setSelectedContent}/>
+                        </SidebarContainer>
+                        <ContentContainer>
+                            {selectedContent === "Home" ? <Home /> : null}
+                            {selectedContent === "Create" ? <Create /> : null}
+                            {selectedContent === "Interact" ? <Interact /> : null}
+                            {selectedContent === "Analytics" ? <Analytics /> : null}
+                        </ContentContainer>
+                    </InnerContainer>
                 </>
-            : <Loading />}
+                : <Loading />}
         </Container>
+
     );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useStateContext } from "@/context/StateContext";
+import postToBluesky from "@/pages/api/blueskyAPI";
 
 
 const Create = () => {
@@ -9,6 +10,8 @@ const Create = () => {
     const [file, setFile] = useState(null);
     const [fileURL, setFileURL] = useState(null);
     const [caption, setCaption] = useState("");
+    const [bluesky, setBluesky] = useState(false);
+    const [twitter, setTwitter] = useState(false);
 
     useEffect(() => {
         if (file) {
@@ -24,7 +27,7 @@ const Create = () => {
             if (!selected.type.startsWith("image") && !selected.type.startsWith("video")) {
                 alert("Unsupported file format");
             }
-            else if (selected.size > 5000000) { // 5MB limit
+            else if (selected.size > 5000000) {
                 alert("Select a file under 5MB");
             }
             else {
@@ -37,9 +40,29 @@ const Create = () => {
         setCaption(e.target.value);
     };
 
+    const handleBlueskyChange = (e) => {
+        setBluesky(!bluesky);
+    }
+
+    const handleTwitterChange = (e) => {
+        setTwitter(!twitter);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // TODO add api interactom
+        console.log("Submitted post")
+
+        if (bluesky) {
+            (async () => {
+                try {
+                    await postToBluesky();
+                } catch (error) {
+                    console.error('Error posting to Bluesky:', error);
+                }
+            })();
+        }
+
+
     };
 
     const getFilePreview = () => {
@@ -76,7 +99,27 @@ const Create = () => {
                     maxLength="200"
                 />
 
-                <SubmitButton type="submit" disabled={caption === null}>Submit</SubmitButton>
+                <Label>Platforms:</Label>
+                <CheckboxContainer>
+                    <Checkbox>
+                        <input
+                            type="checkbox"
+                            checked={bluesky}
+                            onChange={handleBlueskyChange}
+                        />
+                        Bluesky
+                    </Checkbox>
+                    <Checkbox>
+                        <input
+                            type="checkbox"
+                            checked={twitter}
+                            onChange={handleTwitterChange}
+                        />
+                        Twitter
+                    </Checkbox>
+                </CheckboxContainer>
+
+                <SubmitButton type="submit" disabled={caption === null || (bluesky === false && twitter === false)}>Submit</SubmitButton>
             </Form>
         </>
     );
@@ -124,6 +167,19 @@ const CaptionInput = styled.input`
     height: 40px;
     font-size: 16px;
     padding: 10px;
+`;
+
+const CheckboxContainer = styled.div`
+    display: flex;
+    gap: 10px;
+    align-items: center;
+`;
+
+const Checkbox = styled.label`
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 `;
 
 const SubmitButton = styled.button`

@@ -7,9 +7,10 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
 
-    // Variables to Carry Across Multiple Pages
-    const [user, setUser] = useState(undefined)
-    const [userInfo, setUserInfo] = useState(undefined)
+    // user account auth
+    const [user, setUser] = useState(undefined);
+    // user account info such as name
+    const [userInfo, setUserInfo] = useState(undefined);
 
     const db = getFirestore();
 

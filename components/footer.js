@@ -16,7 +16,7 @@ const Footer = () => {
                 <Column>
                     <ColumnHeader>Platforms</ColumnHeader>
                     <Link href="#">Bluesky</Link>
-                    <Link href="#">Mastodon</Link>
+                    <Link href="#">Twitter</Link>
                 </Column>
                 <Column>
                     <ColumnHeader>Legal</ColumnHeader>

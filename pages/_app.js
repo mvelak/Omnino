@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { StateContext } from "@/context/StateContext"
+import { SessionProvider } from "next-auth/react";
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
@@ -28,8 +29,11 @@ export default function App({ Component, pageProps }) {
 
             <GlobalStyle />
 
+
             <StateContext>
-                <Component {...pageProps} />
+                <SessionProvider session={pageProps.session}>
+                    <Component {...pageProps} />
+                </SessionProvider>
             </StateContext>
         </>
     )
