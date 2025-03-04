@@ -10,6 +10,7 @@ import Interact from "@/components/app/content/interact";
 import Analytics from "@/components/app/content/analytics";
 
 
+
 export default function Dashboard() {
     const context = useStateContext();
 
@@ -18,7 +19,7 @@ export default function Dashboard() {
 
     const toggleDrawer = () => {
         setExpanded((prev) => !prev);
-        console.log(process.env.TWITTER_CLIENT_ID);
+        console.log();
     };
 
     return (

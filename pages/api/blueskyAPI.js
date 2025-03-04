@@ -1,8 +1,6 @@
-// TODO: fix issues with .env vars not working
-
 import { BskyAgent } from "@atproto/api"
 
-const postToBluesky = async () => {
+const postToBluesky = async (caption) => {
     const agent = new BskyAgent({
         service: "https://bsky.social"
     })
@@ -13,7 +11,7 @@ const postToBluesky = async () => {
     })
 
     await agent.post({
-        text: "Testing again",
+        text: caption,
         createdAt: new Date().toISOString()
     });
 

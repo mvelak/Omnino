@@ -16,8 +16,8 @@ const Home = () => {
                     <Header>Welcome {userInfo.name}! Sign into your social media accounts below</Header>
                     <SignInContainer>
                         { session
-                            ? <button onClick={() => signOut()}>Sign Out</button>
-                            :  <button onClick={() => signIn()}>Sign In</button>
+                            ? <button onClick={() => signOut()}>Sign Out {session.user.name}</button>
+                            : <button onClick={() => signIn()}>Sign In</button>
                         }
                     </SignInContainer>
                 </Container>

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useStateContext } from "@/context/StateContext";
+import { useSession} from "next-auth/react";
 import postToBluesky from "@/pages/api/blueskyAPI";
+import postToX from "@/pages/api/xAPI";
+
 
 
 const Create = () => {
-    const { user, userInfo } = useStateContext();
-
+    const { data: session } = useSession();
     const [file, setFile] = useState(null);
     const [fileURL, setFileURL] = useState(null);
     const [caption, setCaption] = useState("");
     const [bluesky, setBluesky] = useState(false);
-    const [twitter, setTwitter] = useState(false);
+    const [x, setX] = useState(false);
 
     useEffect(() => {
         if (file) {
@@ -44,8 +45,8 @@ const Create = () => {
         setBluesky(!bluesky);
     }
 
-    const handleTwitterChange = (e) => {
-        setTwitter(!twitter);
+    const handleXChange = (e) => {
+        setX(!x);
     }
 
     const handleSubmit = (e) => {
@@ -55,9 +56,19 @@ const Create = () => {
         if (bluesky) {
             (async () => {
                 try {
-                    await postToBluesky();
+                    await postToBluesky(caption);
                 } catch (error) {
                     console.error('Error posting to Bluesky:', error);
+                }
+            })();
+        }
+
+        if (x) {
+            (async () => {
+                try {
+                    await postToX(caption, session.accessToken);
+                } catch (error) {
+                    console.error('Error posting to X:', error);
                 }
             })();
         }
@@ -112,14 +123,14 @@ const Create = () => {
                     <Checkbox>
                         <input
                             type="checkbox"
-                            checked={twitter}
-                            onChange={handleTwitterChange}
+                            checked={x}
+                            onChange={handleXChange}
                         />
-                        Twitter
+                        X
                     </Checkbox>
                 </CheckboxContainer>
 
-                <SubmitButton type="submit" disabled={caption === null || (bluesky === false && twitter === false)}>Submit</SubmitButton>
+                <SubmitButton type="submit" disabled={caption === null || (bluesky === false && x === false)}>Submit</SubmitButton>
             </Form>
         </>
     );
