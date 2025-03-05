@@ -13,11 +13,12 @@ const Home = () => {
             ? <Loading />
             :
                 <Container>
-                    <Header>Welcome {userInfo.name}! Sign into your social media accounts below</Header>
+                    { session ? <Header>Welcome {userInfo.name}!</Header>
+                        : <Header>Welcome {userInfo.name}! Link your social media accounts below</Header>
+                    }
                     <SignInContainer>
-                        { session
-                            ? <button onClick={() => signOut()}>Sign Out {session.user.name}</button>
-                            : <button onClick={() => signIn()}>Sign In</button>
+                        { session ? <button onClick={() => signOut()}>Unlink Twitter</button>
+                            : <button onClick={() => signIn()}>Link Twitter</button>
                         }
                     </SignInContainer>
                 </Container>

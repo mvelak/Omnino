@@ -4,6 +4,7 @@ import Form from "next/form";
 import { logIn } from "@/backend/firebase";
 import {useRouter} from "next/router";
 import Logo from "@/components/logo";
+import {error} from "next/dist/build/output/log";
 
 
 const Login = () => {
@@ -18,15 +19,16 @@ const Login = () => {
         setIsLoading(true);
         setMessage("");
 
-        if (await logIn(email, password) === true) {
+        try {
+            await logIn(email, password);
             setMessage("Logged in successfully!");
             router.push("/app/dashboard");
-        } else {
-            setMessage("Error logging in");
+        } catch (error) {
+            setMessage("An error occurred during login");
         }
-
         setIsLoading(false);
     };
+
 
     return (
         <Container>
@@ -51,7 +53,7 @@ const Login = () => {
                     />
 
                     <SubmitButton type="submit" disabled={isLoading}>
-                        {isLoading ? "Loading..." : "Sign Up"}
+                        {isLoading ? "Loading..." : "Log In"}
                     </SubmitButton>
                 </Form>
 

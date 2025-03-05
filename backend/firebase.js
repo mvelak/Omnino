@@ -29,10 +29,8 @@ export const signUp = async (email, password, name) => {
             email: email,
             plan: "basic",
         });
-        return true;
     } catch (error) {
         console.error("Error creating user: ", error);
-        return false;
     }
 };
 
@@ -40,9 +38,7 @@ export const logIn = async (email, password) => {
     try {
         // Sign in user with email and password
         await signInWithEmailAndPassword(getAuth(), email, password);
-        return true;
     } catch (error) {
         console.error("Error logging in user : ", error);
-        return false;
     }
 }

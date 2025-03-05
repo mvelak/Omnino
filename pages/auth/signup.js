@@ -20,15 +20,16 @@ const Signup = () => {
         setIsLoading(true);
         setMessage("");
 
-        if (await signUp(email, password, name) === true) {
+        try {
+            await signUp(email, password, name);
             setMessage("Account created successfully!");
             router.push("/app/dashboard");
-        } else {
-            setMessage("Use a different email or password");
+        } catch (error) {
+            setMessage("An error occurred during account creation");
         }
-
         setIsLoading(false);
     };
+
 
     return (
         <Container>
