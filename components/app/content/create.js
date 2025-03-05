@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 
 const Create = () => {
     const { data: session } = useSession();
+
     const [file, setFile] = useState(null);
     const [fileURL, setFileURL] = useState(null);
     const [caption, setCaption] = useState("");
@@ -18,6 +19,8 @@ const Create = () => {
     }, [file]);
 
     const handleFileChange = (e) => {
+        console.log(session.accessToken, "testing here", session.user.name);
+
         const selected = e.target.files[0];
         if (selected) {
             console.log(file);
@@ -49,14 +52,41 @@ const Create = () => {
         e.preventDefault();
         console.log("Submitted post")
 
+
         if (bluesky) {
-            await fetch("/api/postToBluesky", {
+            let response = await fetch("/api/bluesky", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ caption })
             });
+
+            if (response.ok) {
+                let data = await response.json();
+                console.log('Success:', data.message);
+            } else {
+                let errorData = await response.json();
+                console.error('Error:', errorData.error);
+            }
+        }
+
+        if (x) {
+            let response = await fetch("/api/xtwitter", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ caption, session })
+            });
+
+            if (response.ok) {
+                let data = await response.json();
+                console.log('Success:', data.message);
+            } else {
+                let errorData = await response.json();
+                console.error('Error:', errorData.error);
+            }
         }
     };
 

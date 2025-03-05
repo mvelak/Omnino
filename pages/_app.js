@@ -4,13 +4,13 @@ import { SessionProvider } from "next-auth/react";
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
-  * 
-  {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Avenir", Helvetica, Arial, sans-serif;
-  }
+    *
+    {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Avenir", Helvetica, Arial, sans-serif;
+    }
 `
 
 export default function App({ Component, pageProps }) {
