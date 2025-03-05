@@ -1,18 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { onIdTokenChanged } from 'firebase/auth';
-import { auth } from '@/backend/firebase'
+import { auth, db } from '@/backend/firebase'
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
 
-    // user account auth
     const [user, setUser] = useState(undefined);
-    // user account info such as name
     const [userInfo, setUserInfo] = useState(undefined);
-
-    const db = getFirestore();
 
     // AUTHENTICATION REMEMBER ME USE EFFECT
     useEffect(() => {
@@ -31,7 +27,6 @@ export const StateContext = ({ children }) => {
                 });
             }
             else {
-                // There is no user signed in
                 setUser(null);
                 setUserInfo(null);
             }

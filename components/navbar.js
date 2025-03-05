@@ -8,17 +8,18 @@ import Logo from "@/components/logo";
 
 const NavBar = () => {
     const context = useStateContext();
-    const { user, setUser } = context;
+    const { user } = context;
     const auth = getAuth();
 
-    const logout = () => {
-        signOut(auth).then(() => {
-            setUser(null);
-            console.log("User logged out");
-        }).catch((error) => {
-            console.log(`Error: ${error}`);
-        });
+    const logout = async () => {
+        try {
+            await signOut(auth);
+            console.log("Logged out");
+        } catch (error) {
+            console.log(`Error logging out: ${error}`);
+        }
     }
+
 
     // Login/Signup or Logout/Dashboard depending on whether the user is signed in
     return (
