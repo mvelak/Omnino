@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useStateContext } from "@/context/StateContext";
 import { useSession } from "next-auth/react";
 
 const Create = () => {
@@ -10,6 +11,9 @@ const Create = () => {
     const [caption, setCaption] = useState("");
     const [bluesky, setBluesky] = useState(false);
     const [x, setX] = useState(false);
+    const { blueskyIdentifier, blueskyPassword } = useStateContext();
+
+    console.log( blueskyIdentifier, blueskyPassword);
 
     useEffect(() => {
         if (file) {
@@ -58,7 +62,7 @@ const Create = () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ caption })
+                body: JSON.stringify({ caption, idt: blueskyIdentifier, pas: blueskyPassword }),
             });
 
             if (response.ok) {

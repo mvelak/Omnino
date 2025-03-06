@@ -9,6 +9,8 @@ export const StateContext = ({ children }) => {
 
     const [user, setUser] = useState(undefined);
     const [userInfo, setUserInfo] = useState(undefined);
+    const [blueskyIdentifier, setBlueskyIdentifier] = useState(null);
+    const [blueskyPassword, setBlueskyPassword] = useState(null);
 
     // AUTHENTICATION REMEMBER ME USE EFFECT
     useEffect(() => {
@@ -29,13 +31,15 @@ export const StateContext = ({ children }) => {
             else {
                 setUser(null);
                 setUserInfo(null);
+                setBlueskyIdentifier(null);
+                setBlueskyPassword(null);
             }
         });
         return () => unsubscribe();
     }, []);
 
     return(
-        <Context.Provider value={{user, setUser, userInfo, setUserInfo}}>
+        <Context.Provider value={{user, setUser, userInfo, setUserInfo, blueskyIdentifier, setBlueskyIdentifier, blueskyPassword, setBlueskyPassword }}>
             {children}
         </Context.Provider>
     )

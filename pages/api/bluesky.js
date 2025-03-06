@@ -5,14 +5,14 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: "Method Not Allowed" });
     }
 
-    const { caption } = req.body;
+    const { caption, idt, pas } = req.body;
 
     const agent = new BskyAgent({ service: "https://bsky.social" });
 
     try {
         await agent.login({
-            identifier: "",
-            password: ""
+            identifier: idt,
+            password: pas
         });
     } catch (error) {
         console.error("Login error:", error);
