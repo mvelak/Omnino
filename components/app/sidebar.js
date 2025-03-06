@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Sidebar = ({ setSelectedContent }) => {
@@ -9,7 +9,7 @@ const Sidebar = ({ setSelectedContent }) => {
         <MenuContainer>
             {items.map(
                 (item) => (
-                    <MenuItem>
+                    <MenuItem key={item.name}>
                         <Button onClick={() => setSelectedContent(item.name)}>{item.name}</Button>
                     </MenuItem>
                 )

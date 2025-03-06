@@ -18,12 +18,12 @@ export default NextAuth({
         }),
     ],
     callbacks: {
-        async session({ session, token, user }) {
+        async session({ session, token }) {
             session.user.id = token.id;
             session.accessToken = token.accessToken;
             return session;
         },
-        async jwt({ token, user, account, profile, isNewUser }) {
+        async jwt({ token, user, account}) {
             if (user) {
                 token.id = user.id;
             }
@@ -33,5 +33,4 @@ export default NextAuth({
             return token;
         },
     },
-    secret: process.env.NEXT_AUTH_SECRET,
 });

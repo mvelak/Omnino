@@ -27,7 +27,7 @@ export const signUp = async (email, password, name) => {
         await setDoc(doc(db, "users", userCred.user.uid), {
             name: name,
             email: email,
-            plan: "basic",
+            plan: "Basic",
         });
     } catch (error) {
         console.error("Error creating user: ", error);

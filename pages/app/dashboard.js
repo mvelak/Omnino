@@ -35,7 +35,7 @@ export default function Dashboard() {
                         </LogoContainer>
                     </HeadingContainer>
                     <InnerContainer>
-                        <SidebarContainer isExpanded={isExpanded}>
+                        <SidebarContainer $isExpanded={isExpanded}>
                             <Sidebar setSelectedContent={setSelectedContent}/>
                         </SidebarContainer>
                         <ContentContainer>
@@ -98,7 +98,7 @@ const Icon = styled.img`
 `;
 
 const SidebarContainer = styled.aside`
-    width: ${(props) => (props.isExpanded ? "15%" : "0%")};
+    width: ${(props) => (props.$isExpanded ? "15%" : "0%")};
     height: 100%;
     background: whitesmoke;
     transition: width 0.3s ease;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useStateContext } from "@/context/StateContext"
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import MiniHero from "@/components/minihero";
@@ -7,8 +8,8 @@ import SolidButton from "@/components/solidbutton";
 import HollowButton from "@/components/hollowButton";
 
 export default function Pricing() {
-    // Can update the different pricing plans as needed in this plans array
-    // Also need to update PricingContainer if we add more plans
+    const { userInfo } = useStateContext();
+
     const plans = [
         {
             name: "Basic",
@@ -22,7 +23,7 @@ export default function Pricing() {
                 { text: "Detailed analytics", included: false },
                 { text: "Content library", included: false }
             ],
-            button: <SolidButton text={"Select plan"} link={"/about"}/>
+            link: "/pricing"
         },
         {
             name: "Influencer",
@@ -36,7 +37,7 @@ export default function Pricing() {
                 { text: "Detailed analytics", included: true },
                 { text: "Content library", included: false }
             ],
-            button: <HollowButton text={"Select plan"} link={"/about"}/>
+            link: "/pricing"
         },
         {
             name: "Professional",
@@ -50,7 +51,7 @@ export default function Pricing() {
                 { text: "Detailed analytics", included: true },
                 { text: "Content library", included: true }
             ],
-            button: <SolidButton text={"Select plan"} link={"/about"}/>
+            link: "/pricing"
         },
     ];
 
@@ -65,9 +66,16 @@ export default function Pricing() {
                         <PricingHeader>{plan.name}</PricingHeader>
                         <PricingLabel>{plan.price}</PricingLabel>
                         <FeatureList>
-                            {plan.features.map((feature) => (<li>{feature.included ? "✓" : "✗"} {feature.text}</li>))}
+                            {plan.features.map((feature, index) => (
+                                <li key={index}> {feature.included ? "✓" : "✗"} {feature.text} </li>
+                            ))}
                         </FeatureList>
-                        <ButtonContainer>{plan.button}</ButtonContainer>
+                        <ButtonContainer>
+                            {userInfo?.plan === plan.name
+                                ? <SolidButton text={"Your Plan"} link={"/pricing"}/>
+                                : <HollowButton text={"Select Plan"} link={plan.link}/>
+                            }
+                        </ButtonContainer>
                     </PricingBox>
                 ))}
             </PricingContainer>
@@ -96,8 +104,8 @@ const PricingBox = styled.div`
     flex-direction: column;
     border-radius: 5px;
     border: 2px solid black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 40px 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 
     transition: all 0.3s ease;
     &:hover {

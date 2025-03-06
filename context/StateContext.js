@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { onIdTokenChanged } from 'firebase/auth';
 import { auth, db } from '@/backend/firebase'
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 const Context = createContext();
 

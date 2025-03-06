@@ -40,18 +40,17 @@ const Create = () => {
         setCaption(e.target.value);
     };
 
-    const handleBlueskyChange = (e) => {
+    const handleBlueskyChange = () => {
         setBluesky(!bluesky);
     }
 
-    const handleXChange = (e) => {
+    const handleXChange = () => {
         setX(!x);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Submitted post")
-
 
         if (bluesky) {
             let response = await fetch("/api/bluesky", {
@@ -221,6 +220,12 @@ const SubmitButton = styled.button`
     &:hover {
         background: black;
         color: white;
+    }
+
+    &:disabled {
+        background: white;
+        color: white;
+        cursor: not-allowed;
     }
 `;
 
